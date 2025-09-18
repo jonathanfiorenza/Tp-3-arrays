@@ -4,34 +4,54 @@ Sumar el resultado de lanzar dos dados y anotar en un array el número de aparic
  repitiendo 50 veces esta operacion  */
  
 
- const dados = Array(11).fill(0); //array dados tiene 11 posiciones que van del 0 al 10 y se llenan con 0
- let resultado;
+ const sumas = [];
 
-    for (let i = 0; i < 50; i++) { //bucle for que se repite 50 veces   
-        const dado1 = Math.floor(Math.random() * 6) + 1; //Math.random() genera un numero aleatorio entre 0 y 1, se multiplica por 6 para que el rango sea de 0 a 5.9999, Math.floor() redondea hacia abajo y se le suma 1 para que el rango sea de 1 a 6   
-        const dado2 = Math.floor(Math.random() * 6) + 1;
-        resultado = dado1 + dado2;  //suma de los dos dados 
-        console.log(resultado);
-        dados[resultado - 2]++; //se resta 2 para que el resultado vaya del 0 al 10 y se incrementa en 1 la posicion correspondiente del array dados
-    }   
-    console.log(dados);
-    document.writeln(`<h3>Resultados de lanzar dos dados 50 veces</h3>`);
-    document.writeln(   
-    `<table class="table table-striped-columns my-3 border border-dark">`
-    );
-    document.writeln(`<thead>`);    
-    document.writeln(`<tr>`);
-    document.writeln(`<th scope="col" class="text-center">Suma de los dados</th>`);
-    document.writeln(`<th scope="col" class="text-center">Cantidad de apariciones</th>`);   
-    document.writeln(`</tr>`);
-    document.writeln(`</thead>`);
-    document.writeln(`<tbody>`);    
-    for (let i = 0; i < dados.length; i++) { //bucle for que recorre el array dados
-        document.writeln(`<tr>`);
-        document.writeln(`<td class="text-center">${i + 2}</td>`);  
-        document.writeln(`<td class="text-center">${dados[i]}</td>`);
-        document.writeln(`</tr>`);
-    }       
-    document.writeln(`</tbody>`);
-    document.writeln(`</table>`);
-    
+ for (let i = 0; i < 50; i++) {
+     //math.random devuelve un numero entre 0 y 1, por eso se multiplica por 6 y se le suma 1    
+    //math.floor redondea hacia abajo
+    //math.ceil redondea hacia arriba
+    //math.round redondea al numero mas cercano
+    //math.max devuelve el numero mas grande de una lista de numeros        
+   
+    const dado1 = Math.ceil(Math.random() * 6) + 1;
+    const dado2 = Math.ceil(Math.random() * 6) + 1;
+   let suma = dado1 + dado2;
+   sumas.push(suma);
+ }
+sumas.sort((a, b) => a - b); //sort ordena los numeros de menor a mayor
+console.log(sumas);
+
+if(sumas){
+    let repiticiones = 1; 
+    for (i= 0; i < sumas.length; i++) {
+        if (sumas[i] === sumas[i + 1]) {
+            repiticiones++;
+        } else {
+            document.writeln(`El numero ${sumas[i]} se repite ${repiticiones} veces <br>`);
+            repiticiones = 1;
+        }
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
